@@ -10,4 +10,4 @@
 data-raw/nmr-omics/
 docs/_targets.yaml
 *.html
-*.files
+*_files
