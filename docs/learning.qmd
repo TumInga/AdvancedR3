@@ -1,8 +1,18 @@
 ---
-title: "learning"
+title: "Advanced R course set up pipeline with targets"
+author: "Inga Tummoszeit"
 format: html
 editor: visual
 ---
+
+## Set up targets
+
+```{r setup}
+library(targets)
+tar_config_set(store=here::here("_targets"))
+source(here::here('R/functions.R'))
+lipodomics <- tar_read(lipidomics)
+```
 
 ## Quarto
 
@@ -33,4 +43,3 @@ displayed).
 
 -   Definitely should have an empty space above this list.
 -   This isn't a list, why not?
-

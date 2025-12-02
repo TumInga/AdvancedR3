@@ -6,9 +6,11 @@ Encoding: UTF-8
 Imports: 
     dplyr,
     here,
+    quarto,
     readr,
     readxl,
     stringr,
+    tarchetypes,
     targets,
     tidyr
 Suggests: 
