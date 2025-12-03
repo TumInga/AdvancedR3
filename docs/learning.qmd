@@ -26,8 +26,13 @@ lipodomics %>%
   select(Metabolite = metabolite, "Mean SD" = MeanSD)
 ```
 
-```{r}
+## Results: basic stats table
 
+```{r}
+tar_read(table_descriptive_stats) |> 
+  knitr::kable(
+    caption="The mean and standard deviation of metabolites in the lipidomics dataset"
+  )
 ```
 
 ## Running Code
