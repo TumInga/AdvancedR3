@@ -29,32 +29,35 @@ lipodomics %>%
 ## Results: basic stats table
 
 ```{r}
-tar_read(table_descriptive_stats) |> 
+tar_read(table_descriptive_stats) |>
   knitr::kable(
-    caption="The mean and standard deviation of metabolites in the lipidomics dataset"
+    caption = "The mean and standard deviation of metabolites in the lipidomics dataset"
   )
 ```
 
 ## Results: basic stats table with gt
 
 ```{r}
-tar_read(table_descriptive_stats) |> 
-    gt::gt() |>
+tar_read(table_descriptive_stats) |>
+  gt::gt() |>
   gt::tab_header(
     title = "The mean and standard deviation of metabolites in the lipidomics dataset",
-    subtitle = "with gt package") 
- 
+    subtitle = "with gt package"
+  )
+
 #   data_color( apply_to = "text", colors='white')
-  
 ```
 
 ## Plot of distributions
 
 ```{r}
-ggplot(lipodomics, aes(x=value)) + 
-  geom_histogram()+
-  facet_wrap(vars(metabolite),scales='free') +# it is variable and the scale is free (for each histogram)
-theme_minimal()
+ggplot(lipodomics, aes(x = value)) +
+  geom_histogram() +
+  facet_wrap(vars(metabolite), scales = "free") + # it is variable and the scale is free (for each histogram)
+  theme_minimal()
+```
+
+```{r}
 ```
 
 ## Running Code
