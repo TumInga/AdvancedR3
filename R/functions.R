@@ -1,6 +1,6 @@
 #' Building descriptive stats for metabolite
 #'
-#' @param data A data.frame/tibble
+#' @param data A lipodomics dataset
 #'
 #' @returns A data.frame/tibble
 
