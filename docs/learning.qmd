@@ -22,7 +22,7 @@ lipodomics %>%
   group_by(metabolite) %>% 
   summarise(across(value,list(mean=mean,sd=sd))) %>% 
   mutate(across(where(is.numeric),\(x) round(x,digits=1))) %>% 
-  mutate(across(-metabolite, num, digits = 1)) %>% 
+  mutate(across(-metabolite, ~ sprintf("%.1f",round(.x, 1)))) %>% 
   mutate(MeanSD = glue::glue('{value_mean} ({value_sd})')) %>% 
   select(Metabolite=metabolite,'Mean SD'=MeanSD) 
 
