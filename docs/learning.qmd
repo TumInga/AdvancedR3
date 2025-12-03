@@ -57,7 +57,10 @@ ggplot(lipodomics, aes(x = value)) +
   theme_minimal()
 ```
 
+## Results: Distribution plot
+
 ```{r}
+tar_read(plot_distributions) 
 ```
 
 ## Running Code
