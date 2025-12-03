@@ -8,13 +8,25 @@ editor: visual
 ## Set up targets
 
 ```{r setup}
+library(tidyverse)
 library(targets)
 tar_config_set(store=here::here("_targets"))
 source(here::here('R/functions.R'))
 lipodomics <- tar_read(lipidomics)
 ```
 
-## Quarto
+## Making a table
+
+```{r}
+lipodomics %>% 
+  group_by(metabolite) %>% 
+  summarise(across(value,list(mean=mean,sd=sd))) %>% 
+  mutate(across(where(is.numeric),\(x) round(x,digits=1))) %>% 
+  mutate(across(-metabolite, num, digits = 1)) %>% 
+  mutate(MeanSD = glue::glue('{value_mean} ({value_sd})')) %>% 
+  select(Metabolite=metabolite,'Mean SD'=MeanSD) 
+
+```
 
 Quarto enables you to weave together content and executable code into a
 finished document. To learn more about Quarto see <https://quarto.org>.

@@ -5,6 +5,7 @@ Version: 0.0.1
 Encoding: UTF-8
 Imports: 
     dplyr,
+    glue,
     here,
     quarto,
     readr,
@@ -19,3 +20,5 @@ Suggests:
     usethis
 URL: https://github.com/TumInga/AdvancedR3
 BugReports: https://github.com/TumInga/AdvancedR3/issues
+Depends: 
+    tidyverse
