@@ -14,6 +14,12 @@ create_table_descriptive_stats <- function(data) {
     dplyr::select(Metabolite = metabolite, "Mean SD" = MeanSD,"Mean IQR" = MeanIQR)
 }
 
+#' Plotting the distribution of metabolite
+#'
+#' @param data lipidomics dataset
+#'
+#' @returns a figure
+
 create_plot_distributions <- function(data) {
   data |>
     ggplot2::ggplot(ggplot2::aes(x = value)) +
@@ -25,4 +31,18 @@ create_plot_distributions <- function(data) {
       y = "Count"
     ) +
     ggplot2::theme_minimal()
+}
+
+
+#' Do some cleaning to fix issue later
+#'
+#' @param data lipidomics data set
+#'
+#' @returns A data.frame
+
+clean <- function(data) {
+  data |>
+    dplyr::group_by(dplyr::pick(-value)) |>
+    dplyr::summarise(value = mean(value), .groups = "keep") |>
+    dplyr::ungroup()
 }
