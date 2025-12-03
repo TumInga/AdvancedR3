@@ -53,7 +53,24 @@ clean <- function(data) {
 #'
 #' @returns A data.frame
 
-preprocess <- function(data){
+preprocess <- function(data) {
   data |>
     dplyr::mutate(class = as.factor(class), value = scale(value))
+}
+
+
+#' Univariate logistic regression
+#'
+#' @param data lipidomics data preproccessed for a specific metabolite
+#' @param model dependent ~ independent variable (model)
+#'
+#' @returns a data.frame
+fit_model <- function(data, model) {
+  stats::glm(model, data, family = binomial) |>
+    broom::tidy(exponentiate = T) |>
+    dplyr::mutate(
+      metabolite = unique(data$metabolite),
+      model = format(model),
+      .before = tidyr::everything()
+    )
 }

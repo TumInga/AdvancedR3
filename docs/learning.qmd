@@ -85,10 +85,52 @@ lipodomics |>
 ```
 
 ```{r}
-preprocess <- function(data){
+preprocess <- function(data) {
   data |>
-  dplyr::mutate(class = as.factor(class), value = scale(value))
+    dplyr::mutate(class = as.factor(class), value = scale(value))
 }
+```
+
+```{r}
+just_cholesterol <- lipodomics |>
+  filter(metabolite == "Cholesterol") |>
+  preprocess()
+
+stats::glm(
+  formula = class ~ value,
+  data = just_cholesterol, family = binomial
+) |>
+  broom::tidy(exponentiate = T) |>
+  mutate(
+    metabolite = unique(just_cholesterol$metabolite),
+    model = format(class ~ value),
+    .before = everything()
+  )
+```
+
+```{r}
+#' Univariate logistic regression
+#'
+#' @param data lipidomics data preproccessed for a specific metabolite
+#' @param model dependent ~ independent variable (model)
+#'
+#' @returns a data.frame
+fit_model <- function(data, model) {
+  stats::glm(model, data, family = binomial) |>
+    broom::tidy(exponentiate = T) |>
+    dplyr::mutate(
+      metabolite = unique(data$metabolite),
+      model = format(model),
+      .before = tidyr::everything()
+    )
+}
+```
+
+```{r}
+lipodomics |>
+  filter(metabolite == "Cholesterol") |>
+  preprocess() |>
+  fit_model(class ~ value)
 ```
 
 The `echo: false` option disables the printing of code (only output is
