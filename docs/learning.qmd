@@ -133,25 +133,42 @@ lipodomics |>
   fit_model(class ~ value)
 ```
 
-```{r}
-#' Create model results for report
-#'
-#' @param data the lipidomics data
-#'
-#' @returns a data frame of model results
+## Running multiple models
 
-create_model_results <- function(data) {
-  data |>
-    dplyr::filter(metabolite == "Cholesterol") |>
-    preprocess() |>
-    fit_model(class ~ value)
+```{r}
+just_cholesterol <- lipodomics |>
+  filter(metabolite == "Cholesterol") |>
+  preprocess()
+
+fit_all_models <- function(data) {
+  list(
+    class ~ value,
+    class ~ value + gender + age
+  ) |>
+    purrr::map(\(model) fit_model(data, model = model)) |>
+    purrr::list_rbind()
 }
+
+lipodomics |>
+  filter(metabolite == "Cholesterol") |>
+  preprocess() |>
+  fit_all_models()
 ```
 
-The `echo: false` option disables the printing of code (only output is
-displayed).
+## For all metabolites
 
-## This is poorly formatted
+```{r}
+lipodomics |>
+  group_split(metabolite) |>
+  purrr::map(\(data) preprocess(data) |>
+    fit_all_models()) |>
+  purrr::list_rbind()
+```
 
--   Definitely should have an empty space above this list.
--   This isn't a list, why not?
+```{r}
+lipodomics |>
+  group_split(metabolite) |>
+  purrr::map(preprocess) |>
+  purrr::map(fit_all_models) |>
+  purrr::list_rbind()
+```

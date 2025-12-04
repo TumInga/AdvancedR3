@@ -10,6 +10,7 @@ Imports:
     glue,
     gt,
     here,
+    purrr,
     quarto,
     readr,
     readxl,

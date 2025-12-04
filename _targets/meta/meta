@@ -3,11 +3,11 @@ file|stem|c44b806f3841f535|09442fac263aded2|2c530c1562a7fbd1|1735323524|data/lip
 lipidomics|stem|6d85720faf446486|e8f32e7e2afe3439|8766f2d0e3176a68|-1498393010||t20425.5817329614s|s4137b|4137|rds|local|vector|||0.32||
 plot_distributions|stem|e175513876e0d38f|01ce942be37808d6|6273b6d7cc6d5295|222080706||t20425.5817388658s|s270585b|270585|rds|local|vector|||0.4||
 table_descriptive_stats|stem|d4611c5dfd4e7a36|34e33bc9eaef7fce|0f4a839acd27c9fe|1291134815||t20425.5817393983s|s521b|521|rds|local|vector|||0.02||
+glm_model_results|stem|d443573ea09726b5|8dc321a94f7f9089|7b269dab31a3a1f5|699642103||t20425.6343311092s|s314b|314|rds|local|vector|||0.08||
+quarto_doc|stem|793ff782b59b1c2d|17ff11b3307356f6|55846af8c35fecf3|1582462002|docs/learning.html*docs/learning.qmd|t20425.6344268804s|s62710b|62710|file|local|vector|||7.89||
 fit_model|function|4e38ddf17af4aefc
 preprocess|function|27efdd529f320467
 clean|function|ce06151f5b2133d2
 create_table_descriptive_stats|function|7a9acb3dc6ae1691
 create_plot_distributions|function|878b3b5fd1784860
 create_model_results|function|c3ee17ba7b7d71c8
-glm_model_results|stem|d443573ea09726b5|8dc321a94f7f9089|7b269dab31a3a1f5|699642103||t20425.6343311092s|s314b|314|rds|local|vector|||0.08||
-quarto_doc|stem|793ff782b59b1c2d|17ff11b3307356f6|55846af8c35fecf3|1582462002|docs/learning.html*docs/learning.qmd|t20425.6344268804s|s62710b|62710|file|local|vector|||7.89||
