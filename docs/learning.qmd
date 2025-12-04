@@ -163,3 +163,14 @@ lipodomics |>
   purrr::map(fit_all_models) |>
   purrr::list_rbind()
 ```
+
+## Appendix
+
+```{r}
+tar_read(glm_model_results) |>
+  gt::gt() |>
+  gt::tab_header(
+    title = "Results of the glm with and without confounders for all metabolites",
+    subtitle = "with gt package"
+  )
+```
